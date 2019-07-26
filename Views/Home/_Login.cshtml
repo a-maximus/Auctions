@@ -1,0 +1,28 @@
+@model LoginUser
+
+<div class="col-sm-12">
+    <h3>Login</h3>
+</div>
+
+<form action="/login" method="post">
+
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>Username:</label>
+            <span asp-validation-for="LoginUsername"></span>
+            <input type="text" name="LoginUsername" class="form-control" value="Testyo" />
+        </div>
+    </div>
+
+    <div class="col-sm-12">
+        <div class="form-group">
+            <label>Password:</label>
+            <span asp-validation-for="LoginPassword"></span>
+            <input type="LoginPassword" name="LoginPassword" class="form-control" value="@@test1234" />
+        </div>
+    </div>
+    <div class="col-sm-12">
+        <input type="submit" class="btn btn-primary pull-right" value="Login" />
+    </div>
+
+</form>

@@ -1,0 +1,57 @@
+<div class="header">
+    <p class="rightside text-right"><a href="/logout">Logout</a></p>
+</div>
+
+<br>
+
+<center>
+    <div class="jumbotron">
+        <h1>Current Auctions</h1>
+        <style><text-align: center></text-align></style>
+    </div>
+</center>
+
+<h2>Hi, @ViewBag.User.FirstName!</h2>
+
+<br>
+<br>
+
+<table class="table">
+    <tr>
+        <th>Product</th>
+        <th>Seller</th>
+        <th>Top Bid</th>
+        <th>Time Remaining</th>
+        <th></th>
+    </tr>
+
+    @foreach(Product product in ViewBag.Products)
+    {
+        <tr>
+            <td>
+                <a href="/product/@product.ProductId">@product.ProductName</a>
+            </td>
+            <td>@product.Seller.FirstName</td>
+            <td>$@product.HighestBid</td>
+            @{
+                TimeSpan days = product.EndDate - DateTime.Now;
+                    days.ToString();
+                    <td>@days.Days day(s)</td>
+            }
+            <td>
+                @{
+                    if(product.SellerId == ViewBag.User.UserId)
+                    {
+                        <a href="/delete/@product.ProductId">Delete</a>
+                    }
+                }
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="inline">
+    <a href="/auction/new"><button class="btn btn-primary">New Auction</button></a>
+</div>
+<br>
+    <p>Your Current Wallet: $@ViewBag.User.Wallet</p>
